@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { baseUrl, UserContext, UserInfo } from "../../context/UserContext";
 import useInput from "../../context/useInput";
+import { baseUrl, UserInfo } from "../../context/UserContext";
+import axios from "axios";
 import { useSnackbar } from "notistack";
 
 const Container = styled.div`
@@ -52,8 +51,8 @@ const WrappButton = styled.div`
 
 const Button = styled.button`
   color: #fff;
-  cursor: pointer;
   border: none;
+  cursor: pointer;
   padding: 10px 14px;
   text-align: center;
   font-size: 18px;
@@ -68,10 +67,11 @@ const Button = styled.button`
   }
 `;
 
-const Login = () => {
+const Register = () => {
+  const [instansi, bindInstansi, resetInstansi] = useInput();
   const [email, bindEmail, resetEmail] = useInput();
   const [password, bindPassword, resetPassword] = useInput();
-  const { state, dispatch } = useContext(UserInfo);
+  const { state } = useContext(UserInfo);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -82,17 +82,17 @@ const Login = () => {
     }
   }, [state.userInfo]);
 
-  const handleLogin = () => {
+  const handleRegister = () => {
     const options = {
       method: "POST",
-      url: `${baseUrl}/users/login`,
+      url: `${baseUrl}/users/register`,
       headers: {
         "Content-Type": "application/json",
       },
-      data: { email, password },
+      data: { instansi, email, password },
     };
     closeSnackbar();
-    if (!email || !password) {
+    if (!instansi || !email || !password) {
       return enqueueSnackbar("Name, Email dan Password wajib diisi!", {
         variant: "warning",
       });
@@ -102,20 +102,15 @@ const Login = () => {
     axios
       .request(options)
       .then((response) => {
-        console.log(response);
-        dispatch({ type: "USER_INFO", payload: response.data.user });
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        enqueueSnackbar(`Selamat datang ${response.data.user.email}`, {
-          variant: "success",
-        });
+        enqueueSnackbar("Register berhasil", { variant: "success" });
         setLoading(false);
+        resetInstansi();
         resetEmail();
         resetPassword();
-        navigate("/home");
+        navigate("/login");
       })
       .catch((error) => {
-        enqueueSnackbar("email atau password salah", { variant: "error" });
+        enqueueSnackbar("email sudah digunakan", { variant: "error" });
         setLoading(false);
       });
   };
@@ -123,15 +118,17 @@ const Login = () => {
   return (
     <Container>
       <BoxLogin>
-        <h2 style={{ textAlign: "center" }}>Masuk</h2>
+        <h2 style={{ textAlign: "center" }}>Daftar</h2>
         <hr />
+        <Label htmlFor="name">Name :</Label>
+        <Input type="text" id="name" {...bindInstansi} required />
         <Label htmlFor="email">Email :</Label>
-        <Input type="email" {...bindEmail} id="email" required />
+        <Input type="email" id="email" {...bindEmail} required />
         <Label htmlFor="password">Password :</Label>
-        <Input type="password" {...bindPassword} id="password" required />
+        <Input type="password" id="password" {...bindPassword} required />
         <WrappButton>
-          <Button onClick={handleLogin} disabled={loading}>
-            Masuk
+          <Button onClick={handleRegister} disabled={loading}>
+            Daftar
           </Button>
           <Button inputColor="grey" onClick={() => navigate("/")}>
             Batal
@@ -142,4 +139,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
