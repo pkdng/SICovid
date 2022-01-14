@@ -1,7 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LogoImg from "../../asset/logo/logocovid.svg";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { UserInfo } from "../../context/UserContext";
+import { useSnackbar } from "notistack";
+import { FaUserCircle } from "react-icons/fa";
 
 const Container = styled.div`
   background-color: #5a8cdc;
@@ -45,8 +51,70 @@ const RouteLink = styled(Link)`
     font-size: 16px;
   }
 `;
+const User = styled(FaUserCircle)`
+  width: 30px;
+  height: 30px;
+  color: #fff;
+`;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(UserInfo);
+  const { userInfo } = state;
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const handleLogout = () => {
+    closeSnackbar();
+    dispatch({ type: "USER_LOGOUT" });
+    localStorage.clear();
+    navigate("/login");
+    enqueueSnackbar("berhasil logout", { variant: "success" });
+  };
+  function BasicMenu() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    return (
+      <div>
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <User />
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
+          <MenuItem onClick={handleClose}>{userInfo?.email}</MenuItem>
+          <MenuItem onClick={handleClose}>
+            <NavLink
+              style={{ color: "black", textDecoration: "none" }}
+              to="/admin"
+            >
+              Tambah Informasi
+            </NavLink>
+          </MenuItem>
+
+          <MenuItem onClick={(handleClose, handleLogout)}>Logout</MenuItem>
+        </Menu>
+      </div>
+    );
+  }
   return (
     <Container>
       <Link to="/">
@@ -54,8 +122,14 @@ const Navbar = () => {
       </Link>
 
       <Right>
-        <RouteLink to="/login">Masuk</RouteLink>
-        <RouteLink to="/daftar">Daftar</RouteLink>
+        {userInfo ? (
+            <BasicMenu />
+          ) : (
+            <>
+              <RouteLink to="/login">Masuk</RouteLink>
+              <RouteLink to="/daftar">Daftar</RouteLink>
+            </>
+          )}
       </Right>
     </Container>
   );
