@@ -89,40 +89,37 @@ const DetailVaksin = () => {
           <Tr>
             <Td width="150px">Lokasi </Td>
             <Td>
-              : <b>{data?.location}</b>
+              : {data?.location}
             </Td>
           </Tr>
           <Tr>
             <Td width="150px">Tanggal </Td>
             <Td>
-              : <b>{data?.date}</b>
+              : {data?.date}
             </Td>
           </Tr>
           <Tr>
             <Td width="150px">Waktu </Td>
             <Td>
-              : <b>{data?.time}</b>
+              : {data?.time}
             </Td>
           </Tr>
           <Tr>
             <Td width="150px">Link pendaftaran </Td>
             <Td>
-              :
-              <a href={data?.registlink} target="_blank" noreferer>
-                {data?.registlink}
-              </a>
+              : <a href={data?.registlink} target="blank" noreferer>{data?.registlink}</a>
             </Td>
           </Tr>
           <Tr>
             <Td width="150px">keterangan </Td>
             <Td>
-              : <b>{data?.description}</b>
+              : {data?.description}
             </Td>
           </Tr>
           <Tr>
             <Td width="150px">Kontak </Td>
             <Td>
-              : <b>{data?.contact}</b>
+              : <a href={`https://api.whatsapp.com/send?phone=${data?.contact}`} target="blank">{data?.contact}</a>
             </Td>
           </Tr>
         </tbody>
