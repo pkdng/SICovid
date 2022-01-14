@@ -59,7 +59,7 @@ const DetailAmbulance = () => {
   const fetchData = () => {
     const options = {
       method: "GET",
-      url: `${baseUrl}/ambulances/${id}`,
+      url: `${baseUrl}/ambulance/${id}`,
     };
 
     setLoading(true);
