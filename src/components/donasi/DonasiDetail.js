@@ -271,7 +271,7 @@ const DonasiDetail = () => {
             </Tagline>
 
             <WrappButton>
-              <Button onClick={handlePostData}>Simpan</Button>
+              <Button onClick={handlePostData}>Donasi</Button>
               <Button bg="grey" onClick={handleClose}>
                 Batal
               </Button>
