@@ -87,28 +87,28 @@ const DetailOksigen = () => {
       <table>
         <tbody>
           <Tr>
-            <Td width="150px">Lokasi </Td>
+            <Td width="160px">Lokasi </Td>
             <Td>
-              : <b>{data?.location}</b>
+              : {data?.location}
             </Td>
           </Tr>
           <Tr>
-            <Td width="150px">Biaya </Td>
+            <Td width="160px">Biaya </Td>
             <Td>
-              : <b>{data?.price}</b>
+              : {data?.price}
             </Td>
           </Tr>
           <Tr>
-            <Td width="150px">Waktu Operasional </Td>
+            <Td width="160px">Waktu Operasional </Td>
             <Td>
-              : <b>{data?.operationalTime}</b>
+              : {data?.operationalTime}
             </Td>
           </Tr>
 
           <Tr>
-            <Td width="150px">Kontak </Td>
+            <Td width="160px">Kontak </Td>
             <Td>
-              : <b>{data?.contact}</b>
+              : <a href={`https://api.whatsapp.com/send?phone=${data?.contact}`} target="blank">{data?.contact}</a>
             </Td>
           </Tr>
         </tbody>
