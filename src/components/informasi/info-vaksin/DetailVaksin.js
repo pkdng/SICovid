@@ -107,7 +107,7 @@ const DetailVaksin = () => {
           <Tr>
             <Td width="150px">Link pendaftaran </Td>
             <Td>
-              : <a href={data?.registlink} target="blank" noreferer>{data?.registlink}</a>
+              : <a href={`http://${data?.registlink}`} target="blank">{data?.registlink}</a>
             </Td>
           </Tr>
           <Tr>
