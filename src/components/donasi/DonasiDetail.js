@@ -296,7 +296,7 @@ const DonasiDetail = () => {
           </Div>
           <Div>
             <Telepon />
-            <p>{data?.contact}</p>
+            <a href={`https://api.whatsapp.com/send?phone=${data?.contact}`} target="blank">{data?.contact}</a>
           </Div>
           <Div>
             <Rekening />
