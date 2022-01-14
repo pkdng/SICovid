@@ -28,6 +28,7 @@ const HeaderDonasi = styled.div`
   box-sizing: border-box;
   display: flex;
   position: relative;
+  margin-bottom: 28px;
   justify-content: space-between;
   @media (max-width: 768px) {
     flex-direction: column-reverse;
@@ -46,12 +47,14 @@ const Tagline = styled.h2`
   font-weight: bold;
   @media (max-width: 768px) {
     font-size: 30px;
+    text-align: center;
   }
 `;
 const Description = styled.p`
   font-size: 24px;
   @media (max-width: 768px) {
     font-size: 20px;
+    text-align: center;
   }
 `;
 
@@ -73,7 +76,7 @@ const MenuDonasi = styled.div`
   align-items: center;
   grid-gap: 30px;
   position: relative;
-  margin-top: 100px;
+  margin-top: 42px;
   margin-bottom: 50px;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -242,6 +245,7 @@ const Donasi = () => {
         Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
       },
     };
+    console.log(deleteOptions)
     axios
       .request(deleteOptions)
       .then((result) => {

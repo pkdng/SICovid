@@ -115,7 +115,7 @@ const Daftar = () => {
         <P1>Scan Surat Izin Operasional Instansi dengan format pdf</P1>
         <Input type="file" required />
         <WrappButton>
-          <Button>Submit</Button>
+          <Button onClick={() => navigate("/register")}>Submit</Button>
           <Button inputColor="grey" onClick={() => navigate("/")}>
             Batal
           </Button>

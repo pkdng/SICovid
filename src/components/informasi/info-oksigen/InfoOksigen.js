@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { baseUrl, UserInfo } from "../../../context/UserContext";
 import { IconDelete, IconEye } from "../info-vaksin/InfoVaksin";
 const Container = styled.div`
-  margin-top: 80px;
+  margin: 54px 0;
   width: 100%;
   box-sizing: border-box;
   padding: 0 80px;

@@ -152,6 +152,7 @@ const Button = styled.div`
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
+  margin-top: 18px;
   margin-right: 10px;
   &:hover {
     opacity: 0.9;

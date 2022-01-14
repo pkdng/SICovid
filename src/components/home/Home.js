@@ -144,7 +144,7 @@ const Home = () => {
             Jutaan Tenaga medis berjuang dengan kita untuk mengalahkan pandemi
             ini, Uluran tanganmu sangat berarti bagi mereka
           </Description>
-          <Button to="/donasi">Donasi</Button>
+          <Button to="/komunitas">Donasi</Button>
         </Left>
 
         <Right>
@@ -155,17 +155,17 @@ const Home = () => {
         <H1>Layanan-layanan kami :</H1>
         <BoxLayanan>
           <Box>
-            <Link to="/vaksin">
+            <Link to="/informasi/info-vaksin">
               <BoxLogo src={Vaksin} alt="vaksin"></BoxLogo>
             </Link>
           </Box>
           <Box>
-            <Link to="/ambulance">
+            <Link to="/informasi/info-ambulance">
               <BoxLogo src={Ambulance} alt="ambulance"></BoxLogo>
             </Link>
           </Box>
           <Box>
-            <Link to="/oksigen">
+            <Link to="/informasi/info-oksigen">
               <BoxLogo src={Oxygen} alt="oksigen"></BoxLogo>
             </Link>
           </Box>

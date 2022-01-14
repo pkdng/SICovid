@@ -4,12 +4,13 @@ import Waiting from "../../asset/images/wait.svg";
 import { UserInfo } from "../../context/UserContext";
 
 const Container = styled.div`
-  margin-top: 80px;
+  margin-top: 32px;
   width: 100%;
   box-sizing: border-box;
   padding: 0 80px;
   position: relative;
   @media (max-width: 768px) {
+    margin-top: 0px;
     padding: 0 30px;
   }
   @media (max-width: 450px) {
@@ -20,8 +21,14 @@ const Left = styled.div`
   width: 100%;
   margin-right: 30px;
   margin-bottom: 50px;
+  @media (max-width: 1200px) {
+    margin-bottom: 24px;
+  }
+  @media (max-width: 972px) {
+    margin-bottom: -12px;
+  }
   @media (max-width: 768px) {
-    width: 100%;
+    margin-bottom: -24px;
   }
 `;
 const Image = styled.img`
@@ -110,7 +117,7 @@ const AfterDonasi = () => {
                 <Td>
                   Lakukan konfirmasi donasi dengan mengirimkan Bukti Transfer
                   dan kode donasi #202011 dan kirim ke ke nomor
-                  <b>{state?.komunitas.contact}</b>
+                  <b> {state?.komunitas.contact} </b>
                   (WhatsApp/SMS/Telepon)
                 </Td>
               </Tr>

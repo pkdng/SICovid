@@ -7,7 +7,7 @@ import { BsTrash, BsEye } from "react-icons/bs";
 import { useSnackbar } from "notistack";
 
 const Container = styled.div`
-  margin-top: 80px;
+  margin: 54px 0;
   width: 100%;
   box-sizing: border-box;
   padding: 0 80px;
