@@ -7,7 +7,7 @@ import { IconDelete, IconEye } from "../info-vaksin/InfoVaksin";
 import { useSnackbar } from "notistack";
 
 const Container = styled.div`
-  margin-top: 80px;
+  margin: 54px 0;
   width: 100%;
   box-sizing: border-box;
   padding: 0 80px;
@@ -163,8 +163,7 @@ const InfoAmbulance = () => {
           ))
         ) : (
           data?.result?.map((item, index) => (
-            <CardLink key={index} to={`/info-ambulance/${item._id}`}>
-              <Card>
+            <Card>
                 <h2>{item.name}</h2>
                 <p>{item.location}</p>
                 <p>{item.operationalTime}</p>
@@ -185,7 +184,6 @@ const InfoAmbulance = () => {
                   />
                 </span>
               </Card>
-            </CardLink>
           ))
         )}
       </GridCard>
